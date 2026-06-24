@@ -12,7 +12,7 @@
 #define CAT_INIT_Y  120
 #define CAT_MIN_X   0
 #define CAT_MAX_X   (SCREEN_W - CAT_DRAW_W)            // 176
-#define CAT_MIN_Y   50
+#define CAT_MIN_Y   90                                  // keep clear of title text (y=40..56)
 #define CAT_MAX_Y   (SCREEN_H - 70 - CAT_DRAW_H)       // 186
 
 class CatActor {

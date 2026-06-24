@@ -24,6 +24,6 @@
 // ── Colors (RGB565) ───────────────────────────────────────────
 #define COLOR_BLACK  0x0000
 #define COLOR_WHITE  0xFFFF
-#define COLOR_BG     0x18E3   // dark blue-gray background
+#define COLOR_BG     0x0000   // black background
 #define COLOR_TITLE  0xFFFF
 #define COLOR_INFO   0xAD55   // muted green

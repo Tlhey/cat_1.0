@@ -17,7 +17,7 @@ static const CatActionDef DEF_WALK_RIGHT = {
     WALK_RIGHT_FRAMES, 4,
     /*canBeRandomIdle=*/true, /*movesCat=*/true,
     /*dx=*/3, /*dy=*/0,
-    WALK_MS, /*maxCycles=*/0
+    WALK_MS, /*maxCycles=*/6
 };
 
 // ── WALK_LEFT ─────────────────────────────────────────────────────────────────
@@ -32,7 +32,7 @@ static const CatActionDef DEF_WALK_LEFT = {
     WALK_LEFT_FRAMES, 4,
     true, true,
     /*dx=*/-3, /*dy=*/0,
-    WALK_MS, 0
+    WALK_MS, 6
 };
 
 // ── WALK_DOWN ─────────────────────────────────────────────────────────────────
@@ -47,7 +47,7 @@ static const CatActionDef DEF_WALK_DOWN = {
     WALK_DOWN_FRAMES, 4,
     true, true,
     /*dx=*/0, /*dy=*/3,
-    WALK_MS, 0
+    WALK_MS, 6
 };
 
 // ── WALK_UP ───────────────────────────────────────────────────────────────────
@@ -62,7 +62,7 @@ static const CatActionDef DEF_WALK_UP = {
     WALK_UP_FRAMES, 4,
     true, true,
     /*dx=*/0, /*dy=*/-3,
-    WALK_MS, 0
+    WALK_MS, 6
 };
 
 // ── WALK_RIGHT_DOWN ───────────────────────────────────────────────────────────
@@ -77,7 +77,7 @@ static const CatActionDef DEF_WALK_RIGHT_DOWN = {
     WALK_RIGHT_DOWN_FRAMES, 4,
     true, true,
     /*dx=*/2, /*dy=*/2,
-    WALK_MS, 0
+    WALK_MS, 6
 };
 
 // ── WALK_LEFT_DOWN ────────────────────────────────────────────────────────────
@@ -92,7 +92,7 @@ static const CatActionDef DEF_WALK_LEFT_DOWN = {
     WALK_LEFT_DOWN_FRAMES, 4,
     true, true,
     /*dx=*/-2, /*dy=*/2,
-    WALK_MS, 0
+    WALK_MS, 6
 };
 
 // ── WALK_RIGHT_UP ─────────────────────────────────────────────────────────────
@@ -107,7 +107,7 @@ static const CatActionDef DEF_WALK_RIGHT_UP = {
     WALK_RIGHT_UP_FRAMES, 4,
     true, true,
     /*dx=*/2, /*dy=*/-2,
-    WALK_MS, 0
+    WALK_MS, 6
 };
 
 // ── WALK_LEFT_UP ──────────────────────────────────────────────────────────────
@@ -122,7 +122,7 @@ static const CatActionDef DEF_WALK_LEFT_UP = {
     WALK_LEFT_UP_FRAMES, 4,
     true, true,
     /*dx=*/-2, /*dy=*/-2,
-    WALK_MS, 0
+    WALK_MS, 6
 };
 
 // ── SLEEP_1_LEFT ──────────────────────────────────────────────────────────────
