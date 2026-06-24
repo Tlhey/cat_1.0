@@ -1,0 +1,65 @@
+# cat_frame_manifest.csv
+# Format: FRAME_NAME, row, col
+# Generated from tools/preview_cat_slots.py grid analysis.
+# Sprite sheet: 11 cols × 53 rows, slot 32x32.
+#
+# ── TEST frames (row 0) ──────────────────────────────────────────────────────
+TEST_0,0,0
+TEST_1,0,1
+TEST_2,0,2
+TEST_3,0,3
+#
+# ── WALK frames ──────────────────────────────────────────────────────────────
+# Each walk direction uses row N, 4 frames (cols 0-3).
+# dx/dy magnitudes chosen to give roughly 2 px/frame movement at scale=6.
+WALK_RIGHT_0,3,0
+WALK_RIGHT_1,3,1
+WALK_RIGHT_2,3,2
+WALK_RIGHT_3,3,3
+WALK_LEFT_0,4,0
+WALK_LEFT_1,4,1
+WALK_LEFT_2,4,2
+WALK_LEFT_3,4,3
+WALK_DOWN_0,5,0
+WALK_DOWN_1,5,1
+WALK_DOWN_2,5,2
+WALK_DOWN_3,5,3
+WALK_UP_0,6,0
+WALK_UP_1,6,1
+WALK_UP_2,6,2
+WALK_UP_3,6,3
+WALK_RIGHT_DOWN_0,7,0
+WALK_RIGHT_DOWN_1,7,1
+WALK_RIGHT_DOWN_2,7,2
+WALK_RIGHT_DOWN_3,7,3
+WALK_LEFT_DOWN_0,8,0
+WALK_LEFT_DOWN_1,8,1
+WALK_LEFT_DOWN_2,8,2
+WALK_LEFT_DOWN_3,8,3
+WALK_RIGHT_UP_0,9,0
+WALK_RIGHT_UP_1,9,1
+WALK_RIGHT_UP_2,9,2
+WALK_RIGHT_UP_3,9,3
+WALK_LEFT_UP_0,10,0
+WALK_LEFT_UP_1,10,1
+WALK_LEFT_UP_2,10,2
+WALK_LEFT_UP_3,10,3
+#
+# ── SLEEP frames ─────────────────────────────────────────────────────────────
+# Each sleep pose: 2-frame cycle (cols 0-1), 8 poses (rows 11-18).
+SLEEP_1_LEFT_0,11,0
+SLEEP_1_LEFT_1,11,1
+SLEEP_1_RIGHT_0,12,0
+SLEEP_1_RIGHT_1,12,1
+SLEEP_2_LEFT_0,13,0
+SLEEP_2_LEFT_1,13,1
+SLEEP_2_RIGHT_0,14,0
+SLEEP_2_RIGHT_1,14,1
+SLEEP_3_LEFT_0,15,0
+SLEEP_3_LEFT_1,15,1
+SLEEP_3_RIGHT_0,16,0
+SLEEP_3_RIGHT_1,16,1
+SLEEP_4_LEFT_0,17,0
+SLEEP_4_LEFT_1,17,1
+SLEEP_4_RIGHT_0,18,0
+SLEEP_4_RIGHT_1,18,1
