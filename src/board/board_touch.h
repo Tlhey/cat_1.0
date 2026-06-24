@@ -2,7 +2,7 @@
 #include <Arduino.h>
 #include "board_config.h"
 
-// Initialize CST816 touch controller (call after Wire / displayBegin).
+// Initialize FT3168 touch controller via Arduino_DriveBus (call after displayBegin).
 void touchBegin();
 
 // Returns true once per touch-DOWN event; fills (x,y) with screen coords.
