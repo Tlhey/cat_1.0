@@ -3,77 +3,43 @@
 #include "../board/board_display.h"
 #include "../board/board_config.h"
 
-static const uint16_t CAT_RENDER_W = CAT_FRAME_W * CAT_SCALE;   // 192
-static const uint16_t CAT_RENDER_H = CAT_FRAME_H * CAT_SCALE;   // 192
-static const int16_t  CAT_X        = (SCREEN_W - (int16_t)CAT_RENDER_W) / 2;  // 88
-static const int16_t  CAT_Y        = 120;
+static const uint16_t W = CAT_FRAME_W * CAT_SCALE;  // 192
+static const uint16_t H = CAT_FRAME_H * CAT_SCALE;  // 192
 
-// Last drawn cat position for dirty-rect clearing in Phase 2.
-static int16_t _lastCatX = CAT_X;
-static int16_t _lastCatY = CAT_Y;
+// -1 means "no previous cat drawn yet"
+static int16_t _lx = -1;
+static int16_t _ly = -1;
 
-void rendererBegin() {
-    _lastCatX = CAT_X;
-    _lastCatY = CAT_Y;
-}
+void rendererBegin() { _lx = -1; _ly = -1; }
 
 void rendererDrawStaticUI() {
     Arduino_GFX* gfx = getDisplay();
     if (!gfx) return;
-
-    gfx->fillScreen(COLOR_BG);
-
-    gfx->setTextColor(COLOR_TITLE);
-    gfx->setTextSize(2);
-    gfx->setCursor(100, 40);
-    gfx->print("CatPet Phase 2");
-
-    gfx->setTextColor(COLOR_INFO);
-    gfx->setTextSize(2);
-    gfx->setCursor(64, 400);
-    gfx->print("Random idle active");
+    gfx->fillScreen(0x0000);   // entire screen black, once
+    _lx = -1; _ly = -1;       // no previous cat
 }
 
-void rendererDrawCat(const CatFrame* frame) {
+void rendererDrawCatPet(CatPet& pet) {
     Arduino_GFX* gfx = getDisplay();
-    if (!gfx || !frame) return;
+    if (!gfx) { pet.clearDirty(); return; }
 
-    gfx->fillRect(CAT_X, CAT_Y, CAT_RENDER_W, CAT_RENDER_H, COLOR_BG);
-    drawSpriteNearest(gfx, *frame, CAT_X, CAT_Y, CAT_SCALE);
-}
+    int16_t nx = pet.x();
+    int16_t ny = pet.y();
+    bool posChanged = (nx != _lx || ny != _ly);
 
-void rendererUpdate(CatAnimationPlayer& anim) {
-    if (anim.frameChanged()) {
-        rendererDrawCat(anim.currentFrame());
-        anim.clearFrameChanged();
-    }
-}
+    if (!pet.needsRedraw() && !posChanged) return;
 
-// ── Phase 2 ───────────────────────────────────────────────────────────────────
-void rendererDrawCatActor(CatActor& actor) {
-    if (!actor.needsRedraw()) return;
-
-    Arduino_GFX* gfx = getDisplay();
-    if (!gfx) { actor.clearDirty(); return; }
-
-    const CatFrame* frame = actor.currentFrame();
-    if (!frame) { actor.clearDirty(); return; }
-
-    int16_t newX = actor.x();
-    int16_t newY = actor.y();
-
-    // Clear the old position if the cat moved.
-    if (newX != _lastCatX || newY != _lastCatY) {
-        gfx->fillRect(_lastCatX, _lastCatY, CAT_RENDER_W, CAT_RENDER_H, COLOR_BG);
+    // Clear old cat position
+    if (_lx >= 0 && posChanged) {
+        gfx->fillRect(_lx, _ly, W, H, 0x0000);
     }
 
-    // Clear the current position (handles frame-only changes on same spot too).
-    gfx->fillRect(newX, newY, CAT_RENDER_W, CAT_RENDER_H, COLOR_BG);
+    // Clear current position, then draw sprite
+    gfx->fillRect(nx, ny, W, H, 0x0000);
+    const CatFrame* f = pet.currentFrame();
+    if (f) drawSpriteNearest(gfx, *f, nx, ny, CAT_SCALE);
 
-    drawSpriteNearest(gfx, *frame, newX, newY, CAT_SCALE);
-
-    _lastCatX = newX;
-    _lastCatY = newY;
-
-    actor.clearDirty();
+    _lx = nx;
+    _ly = ny;
+    pet.clearDirty();
 }
